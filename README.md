@@ -1,1 +1,1 @@
-"# Dialog Component" 
+Dialog 组件
