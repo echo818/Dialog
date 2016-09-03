@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="zepto.js"></script>
+	<script src="touch.js"></script>
+	<style>
+		*{margin:0;padding:0;}
+		body{background:#fff;}
+		.mask{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.3);display:-webkit-box;-webkit-box-pack:center;-webkit-box-align:center;}
+		.mask .dialog{padding:20px;background:#fff;border-radius:4px;}
+		.mask .dialog .picture{position:relative;width:80px;height:80px;border:2px solid #888;border-radius:40px;margin-left:auto;margin-right:auto;}
+		.mask .dialog .picture.right:after{content:'';display:block;width:48px;height:20px;border:2px solid #888;border-top:0;border-right:0;transform:rotate(-50deg);margin-top:24px;margin-left:15px;}
+		.mask .dialog .picture.warn:before{content:'';display:block;width:6px;height:36px;background:#888;margin-top:15px;margin-left:37px;}
+		.mask .dialog .picture.warn:after{content:'';display:block;width:6px;height:6px;background:#888;margin-top:5px;margin-left:37px;}
+		.mask .dialog .picture.load:before{content:'';display:block;position:absolute;top:34px;left:45px;width:12px;height:12px;background:#9BC200;border-radius:6px;animation:loadb 1s infinite;}
+		.mask .dialog .picture.load:after{content:'';display:block;position:absolute;top:34px;right:45px;width:12px;height:12px;background:#e2404f;border-radius:6px;animation:loada 1s infinite;}
+		@keyframes loadb{0%{left:45px;}50%{left:23px;}100%{left:45px;}}
+		@keyframes loada{0%{right:45px;}50%{right:23px;}100%{right:45px;}}
+		.mask .dialog .text{font-size:16px;color:#333;line-height:24px;padding-top:12px;text-align:center;}
+		.mask .dialog .button{display:-webkit-box;-webkit-box-pack:center;padding-top:12px;}
+		.mask .dialog .button button{width:72px;height:32px;margin-left:3px;margin-right:3px;font-size:16px;color:#fff;background:#aaa;outline:none;border:0;border-radius:3px;}
+		.mask .dialog .button button:focus{background:#999;}
+		.mask .dialog .button button.sure{background:#e2404f;}
+		.mask .dialog .button button.sure:focus{background:#CF404E;}
+		.mask .dialog .button button.cancel{background:#9BC200;}
+		.mask .dialog .button button.cancel:focus{background:#89AE00;}
+		.mask .dialog.dark{background:#000;}
+		.mask .dialog.dark .text{color:#fff;}
+	</style>
+</head>
+<body>
+	<!-- <div class="mask">
+		<div class="dialog dark">
+			<div class="picture load"></div>
+			<div class="text">我测试的信息</div>
+			<div class="button">
+				<button class="sure">确定</button>
+				<button>删除</button>
+				<button class="cancel">取消</button>
+			</div>
+		</div>
+	</div> -->
+	<script src="dialog.js"></script>
+	<script>
+		$.dialog({
+			style: 'dark',
+			message: '你确定删除我吗？',
+			isClose: true,
+			buttons: [
+				{
+					type: 'sure',
+					text: '测试',
+					callback: function(){
+						$.dialog({
+							buttons: [
+								{
+									type: 'sure',
+									callback: function(){
+										$.dialog();
+									}
+								}
+							]
+						});
+					},
+					/*isClose: true*/
+				}
+			]
+		});
+
+		/*var d = new Dialog({
+			type: 'warns',
+			style: 'dark',
+			maskOpacity: .5,
+			message: '你确定删除我吗？',
+			buttons: [
+				{
+					type: 'sure',
+					text: '测试',
+					callback: function(){
+						alert('dsadfasd');
+					},
+					isClose: true
+				}
+			]
+		});*/
+
+		// console.log($.isFunction(function(){}));
+	</script>
+</body>
+</html>
